@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Savage Som Game</title>
+  <title>Ultimate Savage Som Game</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -17,15 +17,15 @@
     }
     #game {
       text-align: center;
-      max-width: 500px;
-      padding: 25px;
+      max-width: 600px;
+      padding: 30px;
       border-radius: 15px;
       background: #181818;
-      box-shadow: 0 0 25px rgba(255,0,0,0.5);
+      box-shadow: 0 0 40px rgba(255,0,0,0.7);
     }
     h2 {
       margin-bottom: 20px;
-      font-size: 22px;
+      font-size: 24px;
     }
     .btn {
       display: block;
@@ -45,7 +45,7 @@
     }
     .end {
       color: #ff4444;
-      font-size: 24px;
+      font-size: 26px;
       margin-top: 20px;
       font-weight: bold;
       animation: flicker 1s infinite;
@@ -77,31 +77,67 @@
       });
     }
 
+    // Start Game
     function startGame() {
       show("Som is ... ?", [
-        { text: "Som is gay", action: stepGay },
-        { text: "Som is not gay", action: stepNotGay }
+        { text: "Gay 🌈", action: stepGay },
+        { text: "Not gay 😎", action: stepNotGay }
       ]);
     }
 
+    // Step 1: Som is gay
     function stepGay() {
       show("Who asked?", [
-        { text: "Your mom", action: () => endGame("She dead 💀") },
-        { text: "My bad", action: () => endGame("Get better... oh wait, you can’t 🤡") }
+        { text: "Your mom 🤣", action: stepMom },
+        { text: "My bad 😬", action: stepMyBad }
       ]);
     }
 
+    function stepMom() {
+      show("Your mom just walked in. What now?", [
+        { text: "Tell her 😳", action: () => endGame("She laughed so hard she kicked you out 🤡") },
+        { text: "Run away 🏃", action: () => endGame("Trip over your own feet. Classic Som move 💀") }
+      ]);
+    }
+
+    function stepMyBad() {
+      show("Do we roast Som even harder?", [
+        { text: "Yes 🔥", action: () => endGame("Roasted so hard, even the internet cries 😈") },
+        { text: "No 😅", action: () => endGame("Too late, Som is already a meme 🤣") }
+      ]);
+    }
+
+    // Step 2: Som is not gay
     function stepNotGay() {
-      show("ik cuz you are", [
-        { text: "Let's meet then ;)", action: () => endGame("Hence proved. You're desperate 😬") },
-        { text: "wtf", action: () => endGame("Get trolled. You never had a chance 😂") }
+      show("ik cuz you are 😏", [
+        { text: "Let's meet ;)", action: stepMeet },
+        { text: "WTF 😤", action: stepWtf }
       ]);
     }
 
+    function stepMeet() {
+      show("Where should we meet Som?", [
+        { text: "School 🏫", action: () => endGame("Everyone points and laughs at you. Som is roasted 😈") },
+        { text: "Your house 🏠", action: () => endGame("Parents join in the roast. Som cries 😂") }
+      ]);
+    }
+
+    function stepWtf() {
+      show("Expose Som’s secrets?", [
+        { text: "Yes 🔥", action: () => endGame("All his chats, memes, and embarrassing pics leaked 🤯") },
+        { text: "No 😅", action: () => endGame("Even hiding it won’t save him. Som is doomed 😈") }
+      ]);
+    }
+
+    // Savage Ending
     function endGame(result) {
       document.getElementById("message").innerText = result;
       document.getElementById("options").innerHTML = 
-        `<div class="end">💀 GAME OVER 💀<br>You're hopeless.<br>No escape. 😈</div>`;
+        `<div class="end">
+          💀 GAME OVER 💀<br>
+          Som is utterly roasted.<br>
+          No mercy, no escape 😈
+        </div>`;
     }
 
     startGame();
